@@ -9,7 +9,6 @@
                 {% include 'materializecssform/field_icon.html' %}
             {% endif %}
             <label>
-
                     {{ field }}
                     {% if field.auto_id %}
                         <span>{{ field.label }}</span>
@@ -17,7 +16,6 @@
                     {% for error in field.errors %}
                         <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
                     {% endfor %}
-
             </label>
             {% if field.help_text %}
                 <span class="helper-text">{{ field.help_text|safe }}</span>
@@ -49,36 +47,28 @@
         {% if classes.icon %}
             {% include 'materializecssform/field_icon.html' %}
         {% endif %}
-
         <input type="date" id="{{ field.auto_id }}" name="{{ field.html_name }}" class="datepicker" value="{% if field.value %}{% localize off %}{{ field.value }}{% endlocalize %}{% endif %}" {% include 'materializecssform/attrs.html' %} >
         <label for="{{ field.id_for_label }}"{% if field.value %} class="active"{% endif %}>{{ field.label }}</label>
-
         {% for error in field.errors %}
             <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
         {% endfor %}
-
         {% if field.help_text %}
             <span class="helper-text">{{ field.help_text|safe }}</span>
         {% endif %}
-
     </div>
     {% elif field|is_datetime_input %}
     <div class="input-field col {{ classes.label }} {{ classes.value }} {{ classes.single_value }}">
         {% if classes.icon %}
             {% include 'materializecssform/field_icon.html' %}
         {% endif %}
-
         <input type="datetime-local" id="{{ field.auto_id }}" name="{{ field.html_name }}" value="{% if field.value %}{{ field.value|date:'c' }}{% endif %}" {% include 'materializecssform/attrs.html' %}  >
         <label for="{{ field.id_for_label }}"{% if field.value %} class="active"{% endif %}>{{ field.label }}</label>
-
         {% for error in field.errors %}
             <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
         {% endfor %}
-
         {% if field.help_text %}
             <span class="helper-text">{{ field.help_text|safe }}</span>
         {% endif %}
-
     </div>
     {% elif field|is_select %}
     <div class="input-field col {{ classes.label }} {{ classes.value }} {{ classes.single_value }}">
@@ -94,15 +84,12 @@
                 {% if field.auto_id %}
                     <label class="control-label {{ classes.label }} {% if field.field.required %}{{ form.required_css_class }}{% endif %}">{{ field.label }}</label>
                 {% endif %}
-
                 {% for error in field.errors %}
                     <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
                 {% endfor %}
-
                 {% if field.help_text %}
                     <span class="helper-text">{{ field.help_text|safe }}</span>
                 {% endif %}
-
             {% else %}
                 {% if classes.icon %}
                     {% include 'materializecssform/field_icon.html' %}
@@ -115,19 +102,14 @@
                 {% if field.auto_id %}
                 <label class="control-label {{ classes.label }} {% if field.field.required %}{{ form.required_css_class }}{% endif %}">{{ field.label }}</label>
                 {% endif %}
-
                 {% for error in field.errors %}
                     <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
                 {% endfor %}
-
                 {% if field.help_text %}
                     <span class="helper-text">{{ field.help_text|safe }}</span>
                 {% endif %}
-
             {% endif %}
-
     </div>
-
     {% elif field|is_multiple_checkbox %}
     <div class="col {{ classes.label }} {{ classes.value }} {{ classes.single_value }}">
         {% if field.auto_id %}
@@ -135,30 +117,23 @@
         {% endif %}
         <div id="{{field.auto_id}}">
             <ul>
-
                 {% for choice in field %}
-
                     <li class="{% if field.field.required and form.required_css_class %}{{ form.required_css_class }}{% endif %}">
                         <label>
                             {{ choice.tag }}
                             <span>{{ choice.choice_label }}</span>
                         </label>
                     </li>
-
                 {% endfor %}
-
             </ul>
             {% for error in field.errors %}
                 <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
             {% endfor %}
-
             {% if field.help_text %}
                 <span class="helper-text">{{ field.help_text|safe }}</span>
             {% endif %}
         </div>
-
     </div>
-
     {% elif field|is_textarea %}
         <div class="input-field col {{ classes.label }} {{ classes.value }} {{ classes.single_value }}">
             {% if classes.icon %}
@@ -177,10 +152,8 @@
                 <span class="helper-text">{{ field.help_text|safe }}</span>
             {% endif %}
         </div>
-
     {% elif field|is_file %}
         <div class="col {{ classes.label }} {{ classes.value }} {{ classes.single_value }}">
-
             <div class="file-field input-field">
                 <div class="btn">
                     <span>{{ field.label }}</span>
@@ -192,19 +165,15 @@
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                 </div>
-
                 {% for error in field.errors %}
                     <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
                 {% endfor %}
-
                 {% if field.help_text %}
                     <span class="helper-text">{{ field.help_text|safe }}</span>
                 {% endif %}
             </div>
-
         </div>
     {% else %}
-
         <div class="input-field col {{ classes.label }} {{ classes.value }} {{ classes.single_value }}">
             {% if classes.icon %}
                 {% include 'materializecssform/field_icon.html' %}
@@ -213,14 +182,11 @@
             {% if field.auto_id %}
                 <label class="{% if field.field.required %}{{ form.required_css_class }}{% endif %}{% if field.value %} active{% endif %}" for="{{ field.auto_id }}">{{ field.label }}</label>
             {% endif %}
-
             {% for error in field.errors %}
                 <span class="helper-text {{ form.error_css_class }}">{{ error }}</span>
             {% endfor %}
-
             {% if field.help_text %}
                 <span class="helper-text">{{ field.help_text|safe }}</span>
             {% endif %}
         </div>
-
     {% endif %}
